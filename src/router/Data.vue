@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import Card1 from '@/component/data/Card1.vue';
 import Card2 from '@/component/data/Card2.vue';
-import { reactive } from 'vue';
+import { ref,reactive } from 'vue';
 
 defineOptions({
   name: 'Data'

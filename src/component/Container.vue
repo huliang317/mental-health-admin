@@ -235,7 +235,7 @@ if (route.path === '/container') {
 .content-card {
   background-color: #fff;
   border-radius: 12px;
-  padding: 24px;
+  padding: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   min-height: 400px;
 }
