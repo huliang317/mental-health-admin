@@ -111,6 +111,7 @@ const handleLogin = async () => {
           ElMessage.error(response.data.message)
         }else{
           localStorage.setItem('token',response.data.data.token)
+          localStorage.setItem('username',response.data.data.userInfo.displayName)
           emit('login-success',loginForm)
         }
     }else{

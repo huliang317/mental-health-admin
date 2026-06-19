@@ -123,7 +123,6 @@
       <!-- 空状态 -->
       <template #empty>
         <div class="empty-state">
-          <div class="empty-icon">📝</div>
           <div class="empty-text">暂无相关文章</div>
           <div class="empty-tip">点击「添加文章」创建第一篇文章吧</div>
         </div>

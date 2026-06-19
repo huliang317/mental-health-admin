@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import Container from '@/component/Container.vue'
-import Login from './component/Login.vue';
-import Register from './component/Register.vue';
+import Container from './component/page/Container.vue';
+import Login from './component/page/Login.vue';
+import Register from './component/page/Register.vue';
 import {ref} from 'vue'
 import router from './router/index.ts';
 

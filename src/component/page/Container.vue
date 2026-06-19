@@ -37,7 +37,7 @@
             <span class="breadcrumb">首页 / 仪表盘</span>
           </div>
           <div class="header-right">
-            <span class="username">管理员</span>
+            <span class="username">{{ username }}</span>
             <span class="avatar">👤</span>
           </div>
         </el-header>
@@ -64,6 +64,8 @@ import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
+
+const username = localStorage.getItem('username')
 
 // 如果当前路径是 /container，重定向到 /data
 if (route.path === '/container') {

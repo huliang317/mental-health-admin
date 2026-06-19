@@ -6,7 +6,7 @@ import Data from './Data.vue'
 import Article from './Article.vue'
 import Log from './Log.vue'
 import Record from './Record.vue'
-import Container from '@/component/Container.vue'
+import Container from '@/component/page/Container.vue'
 
 const router = createRouter({
   history: createWebHistory(),

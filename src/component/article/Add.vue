@@ -88,7 +88,7 @@ import { ElMessage } from 'element-plus'
 import { Plus, Delete } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import type { UploadFile } from 'element-plus'
-import RichText from '../RichText.vue'
+import RichText from '../page/RichText.vue'
 import axios from 'axios'
 
 defineOptions({

@@ -48,7 +48,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import Myselect from '@/component/Myselect.vue'
+import Myselect from '@/component/page/Myselect.vue'
 import ArticleList from '@/component/article/ArticleList.vue'
 import Add from '@/component/article/Add.vue'
 
