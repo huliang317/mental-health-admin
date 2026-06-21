@@ -104,8 +104,6 @@ function handleSearch(){
   .then((response) => {
    const data = response.data.data || {}
     tableData.value = data.records || []
-    console.log('列表数据：', tableData.value)
-    console.log(tableData)
   })
   .catch((error) => {
     console.log(error);

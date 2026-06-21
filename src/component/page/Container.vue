@@ -13,16 +13,16 @@
           </div>
         </div>
         <nav class="nav-menu">
-          <router-link to="/data" class="nav-item" active-class="active">
+          <router-link to="/admin/data" class="nav-item" active-class="active">
             数据分析
           </router-link>
-          <router-link to="/article" class="nav-item" active-class="active">
+          <router-link to="/admin/article" class="nav-item" active-class="active">
             知识文章
           </router-link>
-          <router-link to="/record" class="nav-item" active-class="active">
+          <router-link to="/admin/record" class="nav-item" active-class="active">
             咨询记录
           </router-link>
-          <router-link to="/log" class="nav-item" active-class="active">
+          <router-link to="/admin/log" class="nav-item" active-class="active">
             情绪日志
           </router-link>
         </nav>
@@ -38,7 +38,12 @@
           </div>
           <div class="header-right">
             <span class="username">{{ username }}</span>
-            <span class="avatar">👤</span>
+            <el-popover placement="bottom" trigger="hover" :width="100" popper-class="exit-popover">
+              <template #reference>
+                <span class="avatar">👤</span>
+              </template>
+              <span class="logout-text" @click="exit">退出登录</span>
+            </el-popover>
           </div>
         </el-header>
 
@@ -61,17 +66,59 @@ defineOptions({
 })
 
 import { useRouter, useRoute } from 'vue-router'
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 const router = useRouter()
-const route = useRoute()
-
+const token = localStorage.getItem('token')
 const username = localStorage.getItem('username')
 
-// 如果当前路径是 /container，重定向到 /data
-if (route.path === '/container') {
-  router.push('/data')
+function exit() {
+  localStorage.removeItem('token')
+  localStorage.removeItem('username')
+
+  if (!token) {
+    router.push('/login')
+    return
+  }
+
+  const config = {
+    method: 'post',
+    url: '/api/user/logout',
+    headers: { token }
+  }
+
+  axios.request(config)
+    .then((response) => {
+      console.log('退出响应：', response.data)
+      ElMessage.success('已退出登录')
+      router.push('/login')
+    })
+    .catch((error) => {
+      console.log('退出失败：', error)
+      router.push('/login')
+    })
 }
 </script>
+
+<style>
+/*  不加 scoped */
+.exit-popover {
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+}
+
+.logout-text {
+  cursor: pointer;
+  color: #333;
+  display: block;
+  text-align: center;
+}
+
+.logout-text:hover {
+  color: #409eff;
+}
+</style>
 
 <style scoped>
 /* 整体布局 - 占满全屏 */
@@ -210,6 +257,7 @@ if (route.path === '/container') {
   color: #333;
 }
 
+
 .avatar {
   font-size: 20px;
   cursor: pointer;
@@ -221,6 +269,17 @@ if (route.path === '/container') {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s;
+}
+
+.el-popper.is-customized {
+  /* Set padding to ensure the height is 32px */
+  padding: 6px 12px;
+  background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
+}
+
+.el-popper.is-customized .el-popper__arrow::before {
+  background: linear-gradient(45deg, #b2e68d, #bce689);
+  right: 0;
 }
 
 .avatar:hover {

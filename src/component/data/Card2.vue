@@ -22,7 +22,6 @@ let total_num = ref('')
 let reactive_num = ref('')
 
 defineProps({
-  // 图标名称（字符串）
   iconName: {
     type: String,
     default: 'UserFilled'

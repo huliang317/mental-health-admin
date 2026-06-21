@@ -89,12 +89,11 @@ import { ElMessage } from 'element-plus'
 import { User, Lock, Message } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import axios from 'axios'
+import router from '@/router'
 
 defineOptions({
   name: 'Register'
 })
-
-const emit = defineEmits([ 'to-login'])
 
 // 表单数据
 const registerForm = reactive({
@@ -182,7 +181,7 @@ const handleRegister = async () => {
         }else{
           ElMessage.success('注册成功！即将前往登录')
           setTimeout(()=>{
-            emit('to-login')
+            router.push('/login')
           },2000)
         }
     } else {
@@ -192,7 +191,7 @@ const handleRegister = async () => {
 
 // 跳转到登录
 const goToLogin = () => {
-  emit('to-login')
+  router.push('/login')
 }
 </script>
 

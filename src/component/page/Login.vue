@@ -58,12 +58,11 @@ import { ElMessage } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import axios from 'axios'
+import router from '@/router'
 
 defineOptions({
   name: 'Login'
 })
-
-const emit = defineEmits(['login-success', 'switch-to-register'])
 
 // 表单数据
 const loginForm = reactive({
@@ -112,7 +111,7 @@ const handleLogin = async () => {
         }else{
           localStorage.setItem('token',response.data.data.token)
           localStorage.setItem('username',response.data.data.userInfo.displayName)
-          emit('login-success',loginForm)
+          router.push('/admin')
         }
     }else{
         ElMessage.error('请填写正确的信息')
@@ -121,7 +120,7 @@ const handleLogin = async () => {
 
 // 跳转到注册
 const goToRegister = () => {
-  emit('switch-to-register')
+  router.push('/register')
 }
 
 // 检查是否有记住的用户名

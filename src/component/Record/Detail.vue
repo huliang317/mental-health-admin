@@ -76,7 +76,6 @@ const open = async () => {
     }
 
     const response = await axios.request(config)
-    console.log('消息列表：', response.data)
 
     if (response.data.code === '200') {
       const data = response.data.data || []
