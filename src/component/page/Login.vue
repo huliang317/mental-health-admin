@@ -59,6 +59,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import axios from 'axios'
 import router from '@/router'
+import { useAuthStore } from '@/stores/auth'
 
 defineOptions({
   name: 'Login'
@@ -109,9 +110,15 @@ const handleLogin = async () => {
         if(response.data.code === 'BUSINESS_ERROR') {
           ElMessage.error(response.data.message)
         }else{
-          localStorage.setItem('token',response.data.data.token)
-          localStorage.setItem('username',response.data.data.userInfo.displayName)
-          router.push('/admin')
+          const auth = useAuthStore()
+          auth.setAuth(response.data.data.token, response.data.data.userInfo.displayName)
+          if( response.data.data.userInfo.userType === 2 ){
+            router.push('/admin')
+          }
+          else{
+            router.push('/home')
+          }
+          
         }
     }else{
         ElMessage.error('请填写正确的信息')

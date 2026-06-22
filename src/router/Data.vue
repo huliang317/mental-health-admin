@@ -23,6 +23,7 @@ import Card1 from '@/component/data/Card1.vue';
 import Card2 from '@/component/data/Card2.vue';
 import axios from 'axios'
 import { ref,reactive,onMounted,computed } from 'vue';
+import { useAuthStore } from '@/stores/auth'
 
 defineOptions({
   name: 'Data'
@@ -83,7 +84,7 @@ let card2List =computed(() =>[
 let card1list = ''
 
 onMounted(()=>{
-  const token = localStorage.getItem('token')
+  const { token } = useAuthStore()
 
   let config = {
     method: 'get',

@@ -173,6 +173,7 @@
 <script lang="ts" setup>
 import { ElMessage, ElMessageBox } from 'element-plus'
 import axios from 'axios'
+import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
 
 defineOptions({
@@ -183,7 +184,7 @@ const props = defineProps<{
   tableData: any[]
 }>()
 
-const token = localStorage.getItem('token') || ''
+const { token } = useAuthStore()
 
 // 弹窗
 const dialogVisible = ref(false)

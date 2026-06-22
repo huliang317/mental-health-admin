@@ -20,12 +20,22 @@ export default defineConfig({
     }),
   ],
   server: {
+    watch: { usePolling: true },
     open: true ,
     proxy: {
       '/api': {
         target: 'http://159.75.169.224:1235',
         changeOrigin: true,
-        rewrite: (path) => path  // 保留 /api 前缀
+        rewrite: (path) => path,  // 保留 /api 前缀
+        configure: (proxy) => {
+          proxy.on('proxyReq', (proxyReq, req) => {
+            // SSE 请求：确保流式传输不被缓存
+            if (req.headers.accept === 'text/event-stream') {
+              proxyReq.setHeader('Accept', 'text/event-stream')
+              proxyReq.setHeader('Cache-Control', 'no-cache')
+            }
+          })
+        }
       }
     } 
   },

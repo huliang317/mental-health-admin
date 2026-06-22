@@ -68,14 +68,14 @@ defineOptions({
 import { useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { useAuthStore } from '@/stores/auth'
 
 const router = useRouter()
-const token = localStorage.getItem('token')
-const username = localStorage.getItem('username')
+const auth = useAuthStore()
+const { token, username } = auth
 
 function exit() {
-  localStorage.removeItem('token')
-  localStorage.removeItem('username')
+  auth.clearAuth()
 
   if (!token) {
     router.push('/login')

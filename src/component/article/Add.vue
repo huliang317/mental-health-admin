@@ -89,6 +89,7 @@ import { Plus, Delete } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import type { UploadFile } from 'element-plus'
 import RichText from '../page/RichText.vue'
+import { useAuthStore } from '@/stores/auth'
 import axios from 'axios'
 
 defineOptions({
@@ -114,7 +115,7 @@ const ruleFormRef = ref<FormInstance>()
 const dialogVisible = ref(false)
 const submitting = ref(false)
 const mode = ref<'add' | 'edit'>('add')
-const token = localStorage.getItem('token') || ''
+const { token } = useAuthStore()
 
 // 当前编辑的文章 ID
 const currentId = ref('')

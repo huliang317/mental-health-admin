@@ -59,6 +59,7 @@ import { ref } from 'vue';
 import { ElMessage } from 'element-plus'
 import axios from 'axios';
 import Loglist from '@/component/log/Loglist.vue';
+import { useAuthStore } from '@/stores/auth'
 
 defineOptions({
   name: 'Log'
@@ -67,7 +68,7 @@ defineOptions({
 const inputID = ref('')
 const minMoodScore = ref('')
 const maxMoodScore = ref('')
-const token = localStorage.getItem('token')
+const { token } = useAuthStore()
 const tableData = ref<any[]>([])
 
 const score = [

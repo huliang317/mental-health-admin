@@ -41,6 +41,7 @@
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import Detail from './Detail.vue';
+import { useAuthStore } from '@/stores/auth'
 import axios from 'axios';
 
 defineOptions({
@@ -52,7 +53,7 @@ const pageNum = ref(1)
 const pageSize = ref(10)
 const total = ref(0)
 
-const token = localStorage.getItem('token')
+const { token } = useAuthStore()
 
 const fetchData = () => {
   let config = {

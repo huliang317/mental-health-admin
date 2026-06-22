@@ -10,10 +10,11 @@ import Container from '@/component/page/Container.vue'
 import Diary from '@/client/router/Diary.vue'
 import Consult from '@/client/router/Consult.vue'
 import Knowledge from '@/client/router/Knowledge.vue'
-import Home from '@/client/Home.vue'
+import Home from '@/client/component/Home.vue'
 import Page from '@/client/router/Page.vue'
 import Login from '@/component/page/Login.vue'
 import Register from '@/component/page/Register.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -52,9 +53,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token')
-  
-  if (!token && to.path !== '/login' && to.path !== '/register') {
+  const auth = useAuthStore()
+
+  if (!auth.isLoggedIn && to.path !== '/login' && to.path !== '/register') {
     next('/login')
   } else {
     next()

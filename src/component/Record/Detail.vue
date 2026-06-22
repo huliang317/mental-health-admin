@@ -47,6 +47,7 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import axios from 'axios'
+import { useAuthStore } from '@/stores/auth'
 
 defineOptions({
   name: 'Detail'
@@ -56,7 +57,7 @@ const props = defineProps<{
   row: any
 }>()
 
-const token = localStorage.getItem('token') || ''
+const { token } = useAuthStore()
 const dialogVisible = ref(false)
 const loading = ref(false)
 const loaded = ref(false)

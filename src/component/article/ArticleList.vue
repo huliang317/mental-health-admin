@@ -145,6 +145,7 @@
 import { ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { View, Edit, Delete, Switch } from '@element-plus/icons-vue'
+import { useAuthStore } from '@/stores/auth'
 import axios from 'axios'
 
 defineOptions({
@@ -169,7 +170,7 @@ const emit = defineEmits<{
 
 const pageNum = ref(1)
 const pageSize = ref(10)
-const token = localStorage.getItem('token') || ''
+const { token } = useAuthStore()
 
 // 表头样式
 const headerCellStyle = {

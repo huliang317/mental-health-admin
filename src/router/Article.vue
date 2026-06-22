@@ -48,6 +48,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { useAuthStore } from '@/stores/auth'
 import Myselect from '@/component/page/Myselect.vue'
 import ArticleList from '@/component/article/ArticleList.vue'
 import Add from '@/component/article/Add.vue'
@@ -63,7 +64,7 @@ const inputTitle = ref('')
 const cateData = ref<any[]>([])
 const selectedCategory = ref<string | null>(null)
 const selectedStatus = ref<string | null>(null)
-const token = localStorage.getItem('token') || ''
+const { token } = useAuthStore()
 
 const searchData = ref({
   records: [],

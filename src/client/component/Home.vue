@@ -22,7 +22,9 @@
             <router-link to="/home/knowledge" class="nav-item" active-class="active">
                 知识库
             </router-link>
+            <el-button plain @click="exit" class="btn">退出登录</el-button>
         </div>
+        
 
       </el-header>
 
@@ -38,11 +40,43 @@
 </template>
 
 <script lang="ts" setup>
+import router from '@/router'
+import { useAuthStore } from '@/stores/auth'
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 defineOptions({
   name: 'Home'
 })
 
+const auth = useAuthStore()
+const { token } = auth
+
+function exit() {
+  auth.clearAuth()
+
+  if (!token) {
+    router.push('/login')
+    return
+  }
+
+  const config = {
+    method: 'post',
+    url: '/api/user/logout',
+    headers: { token }
+  }
+
+  axios.request(config)
+    .then((response) => {
+      console.log('退出响应：', response.data)
+      ElMessage.success('已退出登录')
+      router.push('/login')
+    })
+    .catch((error) => {
+      console.log('退出失败：', error)
+      router.push('/login')
+    })
+}
 </script>
 
 <style scoped>
@@ -57,6 +91,11 @@ defineOptions({
   display: flex;
   flex-direction: column;
 }
+
+.btn{
+  margin-left: 50px;
+}
+
 /* #region 头部 */
 .header{
     background-color: #F5F7FA;
@@ -92,9 +131,6 @@ defineOptions({
 .nav-item.active {
   color: #409EFF;
 }
-
-
-
 /* #endregion  */
 
 
