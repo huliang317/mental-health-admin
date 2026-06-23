@@ -183,6 +183,8 @@ const sendMessage = async () => {
         sessionTitle: title
       }, { headers: { token } })
       useId.value = res.data.data.sessionId
+      console.log(res.data.data)
+      console.log('实际输出ID:',useId.value)
       isStart.value = false
     } catch (error) {
       console.error(error)
@@ -198,6 +200,7 @@ const sendMessage = async () => {
   let hasError = false
 
   try {
+    const currentId = judgeID(useId.value)
     const response = await fetch('/api/psychological-chat/stream', {
       method: 'POST',
       headers: {
@@ -205,10 +208,9 @@ const sendMessage = async () => {
         'Accept': 'text/event-stream',
         token: token || ''
       },
-      body: JSON.stringify({ sessionId: useId.value, userMessage: content }),
+      body: JSON.stringify({ sessionId: currentId, userMessage: content }),
       signal: abortController.signal
     })
-
     if (!response.ok || !response.body) {
       throw new Error(`流式请求失败: ${response.status}`)
     }
@@ -313,6 +315,25 @@ function add() {
   isStart.value = true
   sending.value = false
   emit('reset-garden')
+}
+
+function judgeID(id:any) {
+  // 1. 基础校验：排除 null, undefined, 空字符串
+  if (!id && id !== 0) {
+    throw new Error('会话ID不能为空');
+  }
+  const strId = String(id);
+  // 2. 正常格式：已包含前缀，直接返回
+  if (strId.startsWith('session_')) {
+    return strId;
+  }
+  // 3. 纯数字格式：自动补全前缀
+  // 使用正则 /^\d+$/ 确保是纯数字，避免 "abc" 被错误转换
+  if (/^\d+$/.test(strId)) {
+    return `session_${strId}`;
+  }
+  // 4. 其余情况：视为非法格式
+  throw new Error(`无效的会话ID格式: ${strId}`);
 }
 
 // ✅ 切换会话时确保 ID 正确赋值并中断旧流
