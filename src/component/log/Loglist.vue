@@ -219,6 +219,7 @@ const getEmotionType = (emotion: string) => {
 const handleDetail = (row: any) => {
   dialogVisible.value = true
   currentDetail.value = row
+  console.log(row)
 }
 
 // 删除

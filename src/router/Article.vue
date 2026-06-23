@@ -2,7 +2,6 @@
   <div class="article-container">
     <div class="title">
       <span>知识文章</span>
-      <!--  给 Add 组件添加 ref -->
       <Add ref="addRef" />
     </div>
     
@@ -35,11 +34,12 @@
       <el-button style="width: 120px" @click="handleReset">重置</el-button>
     </div>
 
-    <!--  文章列表：监听 @edit 事件 -->
+    <!-- 文章列表 -->
     <ArticleList 
       :search-data="searchData" 
       @refresh="handleSearch"
       @edit="handleEdit"
+      @page-change="handlePageChange"
     />
   </div>
 </template>
@@ -57,7 +57,6 @@ defineOptions({
   name: 'Article'
 })
 
-//  获取 Add 组件的引用
 const addRef = ref<InstanceType<typeof Add>>()
 
 const inputTitle = ref('')
@@ -82,17 +81,16 @@ const handleStatusChange = (data: { id: number; useData: string }) => {
   selectedStatus.value = String(data.id)
 }
 
-// 编辑：调用 Add 组件的 openDialog 方法
 const handleEdit = (row: any) => {
   addRef.value?.openDialog('edit', row)
 }
 
-// 搜索
-const handleSearch = async () => {
+// ✅ 搜索（支持页码参数）
+const handleSearch = async (page?: number) => {
   try {
     const params: any = {
-      currentPage: '1',
-      size: '10'
+      currentPage: page || searchData.value.current || 1,
+      size: searchData.value.size || 10
     }
     
     if (inputTitle.value) params.title = inputTitle.value
@@ -127,12 +125,17 @@ const handleSearch = async () => {
   }
 }
 
+// ✅ 分页切换
+const handlePageChange = (page: number) => {
+  handleSearch(page)
+}
+
 // 重置
 const handleReset = () => {
   inputTitle.value = ''
   selectedCategory.value = null
   selectedStatus.value = null
-  handleSearch()
+  handleSearch(1)
 }
 
 const fetchData = async () => {
@@ -148,7 +151,7 @@ const fetchData = async () => {
 
 onMounted(() => {
   fetchData()
-  handleSearch()
+  handleSearch(1)
 })
 </script>
 

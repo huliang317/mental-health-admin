@@ -4,7 +4,7 @@
         <!-- 头部导航 -->
       <el-header class="header">
         <!-- 左侧Logo -->
-        <div class="logo">
+        <div class="logo" @click="router.push('/home')">
             <el-icon :size="37" class="logo-icon"><MoonNight /></el-icon>
             <span>心理健康AI助手</span>
         </div>

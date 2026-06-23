@@ -290,9 +290,12 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  chartInstance1?.dispose()
-  chartInstance2?.dispose()
-  chartInstance3?.dispose()
+  const instances = [chartInstance1, chartInstance2, chartInstance3]
+  instances.forEach(instance => {
+    if (instance && !instance.isDisposed()) {
+      instance.dispose()
+    }
+  })
 })
 </script>
 
