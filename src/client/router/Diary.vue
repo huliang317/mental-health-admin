@@ -309,6 +309,32 @@ const resetForm = () => {
   .emotion-grid {
     grid-template-columns: repeat(2, 1fr); /* 手机端变2列 */
   }
+  .row-selects {
+    flex-direction: column;
+    gap: 0;
+  }
+  .card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding-left: 12px;
+  }
+  .header-content h1 {
+    font-size: 18px;
+  }
+  .main-content {
+    padding: 0 8px;
+    margin: 12px auto;
+  }
+  .action-buttons {
+    flex-direction: column;
+  }
+  .action-buttons .el-button {
+    width: 100%;
+  }
 }
 
 .emotion-item {

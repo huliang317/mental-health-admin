@@ -206,7 +206,8 @@ const goToLogin = () => {
 }
 
 .register-card {
-  width: 460px;
+  width: 90%;
+  max-width: 460px;
   background: #fff;
   border-radius: 24px;
   padding: 40px;
@@ -254,5 +255,20 @@ const goToLogin = () => {
 
 .register-footer span {
   margin-right: 8px;
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+  .register-header h2 {
+    font-size: 20px;
+  }
+  .register-btn {
+    height: 40px;
+    font-size: 14px;
+  }
 }
 </style>

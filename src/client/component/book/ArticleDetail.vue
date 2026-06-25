@@ -2,7 +2,8 @@
   <el-dialog
     v-model="dialogVisible"
     title="文章详情"
-    width="700px"
+    width="90%"
+    style="max-width: 700px"
     :close-on-click-modal="false"
     destroy-on-close
   >

@@ -1,6 +1,7 @@
 <template>
   <div class="article-table-wrap">
-    <el-table 
+    <div class="table-scroll">
+      <el-table 
       :data="searchData!.records || []" 
       border 
       stripe 
@@ -128,6 +129,7 @@
         </div>
       </template>
     </el-table>
+    </div>
 
     <!-- 分页 -->
     <el-pagination
@@ -292,6 +294,11 @@ const handleDelete = async (row: any) => {
 <style scoped>
 .article-table-wrap {
   margin-top: 16px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pagination {

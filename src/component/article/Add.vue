@@ -6,7 +6,8 @@
   <el-dialog
     v-model="dialogVisible"
     :title="dialogTitle"
-    width="800px"
+    width="90%"
+    style="max-width: 800px"
     align-center
     destroy-on-close
   >

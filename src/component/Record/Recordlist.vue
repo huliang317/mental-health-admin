@@ -1,5 +1,6 @@
 <template>
-  <el-table :data="tableData" stripe style="width: 100%" >
+  <div class="table-scroll">
+    <el-table :data="tableData" stripe style="width: 100%" >
     <el-table-column prop="id" label="会话ID" width="150" />
     
     <!--  如果有 emotionTag 字段就保留，没有就隐藏或删除 -->
@@ -25,6 +26,7 @@
         </template>
     </el-table-column>
   </el-table>
+  </div>
 
   <!-- 分页 -->
     <el-pagination
@@ -94,6 +96,17 @@ fetchData()
 </script>
 
 <style scoped>
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
 .session-info {
   display: flex;
   flex-direction: column;

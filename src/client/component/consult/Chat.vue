@@ -563,4 +563,36 @@ onBeforeUnmount(() => {
 .send-btn:hover {
   background: #e6b53a;
 }
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .chat-content {
+    max-height: 350px;
+    padding: 12px 14px;
+  }
+  .chat-header {
+    padding: 10px 14px;
+  }
+  .chat-input-area {
+    padding: 10px 14px;
+  }
+  .header-text h3 {
+    font-size: 15px;
+  }
+  .msg-box {
+    padding: 8px 12px;
+  }
+  .msg-box p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-content {
+    max-height: 280px;
+  }
+  .chat-header {
+    padding: 8px 10px;
+  }
+}
 </style>

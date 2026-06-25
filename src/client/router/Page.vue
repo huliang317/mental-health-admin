@@ -128,4 +128,59 @@ function isdiary(){
   justify-content: center;
 }
 /* #endregion  */
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    padding: 10% 5% 0;
+    text-align: center;
+  }
+  .content {
+    max-width: 100%;
+  }
+  .title {
+    font-size: 36px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+  .desc {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  .btn-group {
+    justify-content: center;
+  }
+  .btn-primary, .btn-outline {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  .icon-wrapper {
+    margin-top: 20px;
+  }
+  .icon-wrapper .el-icon {
+    font-size: 160px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .desc {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .btn-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  .icon-wrapper .el-icon {
+    font-size: 120px !important;
+  }
+}
 </style>

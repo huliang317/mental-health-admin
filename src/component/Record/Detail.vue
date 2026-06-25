@@ -7,7 +7,8 @@
   <el-dialog
     v-model="dialogVisible"
     title="会话详情"
-    width="600px"
+    width="90%"
+    style="max-width: 600px"
     append-to-body
     :z-index="3000"
     @close="handleClose"

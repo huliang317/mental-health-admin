@@ -2,23 +2,23 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
 export const useAuthStore = defineStore('auth', () => {
-  const token = ref(localStorage.getItem('token') || '')
-  const username = ref(localStorage.getItem('username') || '')
+  const token = ref(sessionStorage.getItem('token') || '')
+  const username = ref(sessionStorage.getItem('username') || '')
 
   const isLoggedIn = computed(() => !!token.value)
 
   function setAuth(newToken: string, newUsername: string) {
     token.value = newToken
     username.value = newUsername
-    localStorage.setItem('token', newToken)
-    localStorage.setItem('username', newUsername)
+    sessionStorage.setItem('token', newToken)
+    sessionStorage.setItem('username', newUsername)
   }
 
   function clearAuth() {
     token.value = ''
     username.value = ''
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('username')
   }
 
   return { token, username, isLoggedIn, setAuth, clearAuth }

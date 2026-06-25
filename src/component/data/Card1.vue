@@ -371,4 +371,22 @@ onBeforeUnmount(() => {
   padding: 8px 0 4px 0;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  .charts-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .chart-container {
+    height: 250px;
+  }
+  .stats-tags {
+    gap: 8px;
+  }
+  .stat-tag {
+    padding: 2px 8px;
+  }
+  .stat-number {
+    font-size: 14px;
+  }
+}
 </style>

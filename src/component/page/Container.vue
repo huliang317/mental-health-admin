@@ -33,7 +33,6 @@
         <!-- 顶部 Header -->
         <el-header class="layout-header">
           <div class="header-left">
-            <span class="menu-toggle">☰</span>
             <span class="breadcrumb">首页 / 仪表盘</span>
           </div>
           <div class="header-right">
@@ -139,6 +138,7 @@ function exit() {
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* Logo 区域 */
@@ -211,6 +211,7 @@ function exit() {
 /* ========== 右侧主区域样式 ========== */
 .layout-main {
   background-color: #f0f2f5;
+  min-width: 0;
 }
 
 /* 顶部 Header 样式 */
@@ -228,17 +229,6 @@ function exit() {
   display: flex;
   align-items: center;
   gap: 16px;
-}
-
-.menu-toggle {
-  font-size: 20px;
-  cursor: pointer;
-  color: #666;
-  transition: color 0.3s;
-}
-
-.menu-toggle:hover {
-  color: #409eff;
 }
 
 .breadcrumb {
@@ -329,5 +319,75 @@ function exit() {
 
 .layout-content::-webkit-scrollbar-thumb:hover {
   background: #a8a8a8;
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .layout-aside {
+    width: 180px !important;
+  }
+
+  .layout-header {
+    padding: 0 12px;
+    height: 50px;
+  }
+
+  .breadcrumb {
+    font-size: 12px;
+  }
+
+  .username {
+    font-size: 12px;
+  }
+
+  .layout-content {
+    padding: 10px;
+  }
+
+  .content-card {
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 300px;
+  }
+
+  .logo {
+    padding: 0 8px;
+  }
+
+  .logo-text h2 {
+    font-size: 12px;
+  }
+
+  .nav-item {
+    padding: 10px 14px;
+    margin: 0 6px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout-aside {
+    width: 60px !important;
+  }
+
+  .logo-text,
+  .logo-icon {
+    display: none;
+  }
+
+  .nav-item {
+    padding: 12px 0;
+    margin: 0 6px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
 }
 </style>

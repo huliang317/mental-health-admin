@@ -1,5 +1,6 @@
 <template>
-  <el-table :data="tableData || []" row-key="id" stripe style="width: 100%">
+  <div class="table-scroll">
+    <el-table :data="tableData || []" row-key="id" stripe style="width: 100%">
     <el-table-column prop="id" label="ID" width="80" align="center" />
     <el-table-column prop="username" label="用户" width="120" align="center" />
     <el-table-column prop="diaryDate" label="记录日期" width="120" align="center" />
@@ -59,12 +60,14 @@
       </div>
     </template>
   </el-table>
+  </div>
 
   <!-- 详情弹窗 -->
-  <el-dialog 
-    v-model="dialogVisible" 
-    title="📖 日记详情" 
-    width="520px" 
+  <el-dialog
+    v-model="dialogVisible"
+    title="📖 日记详情"
+    width="90%"
+    style="max-width: 520px" 
     append-to-body
     :close-on-click-modal="true"
   >
@@ -259,6 +262,11 @@ const emit = defineEmits<{
 </script>
 
 <style scoped>
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .life-indicators {
   display: flex;
   flex-direction: column;

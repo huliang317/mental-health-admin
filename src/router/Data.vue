@@ -117,4 +117,10 @@ onMounted(()=>{
   gap: 20px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 768px) {
+  .card-list {
+    gap: 10px;
+  }
+}
 </style>

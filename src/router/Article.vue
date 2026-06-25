@@ -186,4 +186,17 @@ onMounted(() => {
   gap: 10px;
   margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filters span {
+    margin-left: 0;
+  }
+  .filters .el-input {
+    width: 100% !important;
+  }
+}
 </style>

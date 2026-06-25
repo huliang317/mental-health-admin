@@ -153,7 +153,8 @@ checkRememberUser()
 }
 
 .login-card {
-  width: 420px;
+  width: 90%;
+  max-width: 420px;
   background: #fff;
   border-radius: 24px;
   padding: 40px;
@@ -207,5 +208,20 @@ checkRememberUser()
 
 .login-footer span {
   margin-right: 8px;
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+  .login-header h2 {
+    font-size: 20px;
+  }
+  .login-btn {
+    height: 40px;
+    font-size: 14px;
+  }
 }
 </style>

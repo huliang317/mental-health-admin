@@ -139,4 +139,25 @@ const resetGarden = () => {
   border-radius: 50%;
   background: #52c41a;
 }
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .consult-page {
+    padding: 10px;
+  }
+  .consult-wrap {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .consult-left {
+    width: 100%;
+    flex-shrink: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .consult-left > * {
+    flex: 1 1 100%;
+  }
+}
 </style>

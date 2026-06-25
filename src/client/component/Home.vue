@@ -122,6 +122,45 @@ function exit() {
 .nav{
     padding-right: 200px;
 }
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .logo{
+    padding-left: 12px;
+  }
+  .logo span{
+    font-size: 15px;
+    margin-left: 6px;
+  }
+  .nav{
+    padding-right: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .nav-item{
+    margin-left: 8px;
+    font-size: 13px;
+  }
+  .btn{
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  .header{
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo span{
+    font-size: 13px;
+  }
+  .nav-item{
+    font-size: 11px;
+    margin-left: 4px;
+  }
+}
 .nav-item{
     margin-left: 35px;
     color: #303133;

@@ -44,6 +44,18 @@ defineProps({
   height: 120px;
 }
 
+@media (max-width: 768px) {
+  .card {
+    width: 47%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+  }
+}
+
 :deep(.el-card__body) {
   display: flex;
   align-items: center;
